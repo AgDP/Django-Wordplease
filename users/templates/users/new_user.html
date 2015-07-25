@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} Registrate en Wordplease {% endblock %}
+
+{% block section %}
+
+    <h1>Registra tu nuevo usuario</h1>
+
+    {% if success_message %} <span style="color:green">{{ success_message|safe }}</span> {% endif %}
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button>Crear Usuario</button>
+        </div>
+    </form>
+
+{% endblock %}

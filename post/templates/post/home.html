@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block section %}
+
+    <h1>Wordplease</h1>
+    <p>Blogging Wordplease</p>
+
+    {% if post_list|length > 0 %}
+        <h2>Últimos post publicados</h2>
+        {% include 'post/post_loop.html' %}
+    {% else %}
+        ¡Sé el primero en publicar un post!
+    {% endif %}
+
+{% endblock %}

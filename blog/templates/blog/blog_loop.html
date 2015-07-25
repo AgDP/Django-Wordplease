@@ -1,0 +1,22 @@
+{% for blog in blog_list %}
+
+
+   <div class="row">
+     <div class="col-sm-6 col-md-4">
+       <div class="thumbnail">
+         <div class="caption">
+           <h3>
+                <a href="{% url 'blog_detail' blog.owner.username %}">
+                  <span>{{ blog.title }}</span>
+                </a>
+           </h3>
+           <p>
+              <strong>Usuario:</strong>
+              {{ blog.owner.username }}
+           </p>
+         </div>
+       </div>
+     </div>
+   </div>
+
+{% endfor %}

@@ -1,0 +1,26 @@
+{% for post in post_list %}
+
+   <div class="row">
+     <div class="col-sm-6 col-md-4">
+       <div class="thumbnail">
+         <img class="img-rounded" src="{{ post.url }}" alt="{{ post.title }}" height="150">
+         <div class="caption">
+           <h3>
+               <a href="{% url 'post_detail' post.blog.owner.username post.pk %}">
+                  <span>{{ post.title }}</span>
+               </a>
+           </h3>
+           <p>{{ post.summary }}</p>
+           <p>
+              {% for category in post.category.all %}
+               <ul>
+                  <li><span class="label label-primary">{{ category.name }}</span></li>
+               </ul>
+               {% endfor %}
+            </p>
+         </div>
+       </div>
+     </div>
+   </div>
+
+{% endfor %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block section %}
+
+    <h1>{{ post.title }}</h1>
+
+    <img src="{{ post.url }}" alt="{{ post.title }}" width="600">
+    <p>{{ post.body }}</p>
+
+    <p>
+        <strong>Categorias:</strong>
+              {% for category in post.category.all %}
+               <ul>
+                  <li><span class="label label-primary">{{ category.name }}</span></li>
+               </ul>
+               {% endfor %}
+    </p>
+     <p>
+         <strong>Fecha:</strong>
+         {{ post.posted_date }}
+     </p>
+    <p>
+        <strong>Autor:</strong>
+        {{ post.blog.owner.first_name }}
+        {{ post.blog.owner.last_name }}
+    </p>
+
+{% endblock %}
