@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from blog.models import Blog
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
@@ -72,11 +73,22 @@ class SignupView(View):
         :return: HttpResponse
         """
         success_message = ''
-        user_with_owner = User()
-        form = SignupForm(request.POST, instance=user_with_owner)
+
+        form = SignupForm(request.POST)
         if form.is_valid():
-            new_user = form.save()  # Guarda el objeto Photo y me lo devuelve
-            form = SignupForm()
+            user = User()
+            user.username = form.cleaned_data.get('usr')
+            user.first_name = form.cleaned_data.get('first_name')
+            user.last_name = form.cleaned_data.get('last_name')
+            user.email = form.cleaned_data.get('email')
+            user.set_password(form.cleaned_data.get('password'))
+            user.save()
+
+            blog = Blog()
+            blog.title = "My first blog"
+            blog.owner = user
+            blog.save()
+
             success_message = 'Creado con éxito!'
             success_message += '<a href="{0}">'.format(
                 reverse('post_home', args=[])

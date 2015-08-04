@@ -9,14 +9,13 @@ class LoginForm(forms.Form):
     pwd = forms.CharField(label="Password", widget=forms.PasswordInput())
 
 
-class SignupForm(forms.ModelForm):
+class SignupForm(forms.Form):
     """
-    Formulario para el modelo Post
+    Formulario para el modelo User
     """
-    class Meta:
-        #password = forms.CharField(widget=forms.PasswordInput)
-        model = User
-        exclude = ['date_joined','groups','is_active','is_staff','is_superuser','last_login','user_permissions']
-        #widgets = {
-        #    'password': forms.PasswordInput(),
-        #}
+
+    first_name = forms.CharField(label="Nombre")
+    last_name = forms.CharField(label="Apellido")
+    email = forms.CharField(label="Email")
+    usr = forms.CharField(label="User")
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)

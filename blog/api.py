@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from blog.models import Blog
+from blog.permissions import BlogPermission
 from blog.serializers import BlogSerializer, BlogListSerializer
 from blog.views import BlogQueryset
 from rest_framework.filters import SearchFilter, OrderingFilter
@@ -7,6 +8,7 @@ from rest_framework.generics import ListCreateAPIView
 
 
 class BlogListAPI(BlogQueryset, ListCreateAPIView):
+    permission_classes = (BlogPermission,)
     queryset = Blog.objects.all()
     serializer_class = BlogListSerializer
     filter_backends = (SearchFilter, OrderingFilter)

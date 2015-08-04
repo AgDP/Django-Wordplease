@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from blog.models import Blog
 from django.contrib.auth.models import User
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
@@ -24,6 +25,10 @@ class UserListAPI(GenericAPIView):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             new_user = serializer.save()
+            blog = Blog()
+            blog.title = request.data.get("blog")
+            blog.owner = new_user
+            blog.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 from blog.models import Blog
-from post.forms import PostForm
-from post.models import Post, POSTED, NOTPOSTED
+from post.models import Post, POSTED
 from post.permissions import PostPermission
-from post.serializers import PostSerializer, PostListSerializer, PostCreateSerializer, PostSerializerWithoutBlog
+from post.serializers import PostListSerializer, PostCreateSerializer, PostSerializerWithoutBlog
 from post.views import PostQueryset
 from rest_framework import status
 from rest_framework.filters import SearchFilter, OrderingFilter
 
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, GenericAPIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 
