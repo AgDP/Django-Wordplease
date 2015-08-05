@@ -16,6 +16,7 @@ class PostListAPI(PostQueryset, RetrieveUpdateDestroyAPIView):
     filter_backends = (SearchFilter, OrderingFilter)
     search_fields = ('title','summary')
     ordering_fields = ('title','posted_date')
+    serializer_class = PostListSerializer
 
     def get(self, request, pk):
         blog = Blog.objects.filter(pk=pk)
@@ -44,6 +45,7 @@ class PostDetailAPI(PostQueryset, RetrieveUpdateDestroyAPIView):
 
 class PostCreateAPI(GenericAPIView):
     permission_classes = (PostPermission,)
+    serializer_class = PostCreateSerializer
 
     def post(self, request):
         post_with_owner = Post()

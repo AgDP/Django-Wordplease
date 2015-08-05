@@ -14,6 +14,7 @@ class UserListAPI(GenericAPIView):
 
     pagination_class = PageNumberPagination
     permission_classes = (UserPermission,)
+    serializer_class = UserSerializer
 
     def get(self, request):
         users = User.objects.all()
@@ -37,6 +38,7 @@ class UserListAPI(GenericAPIView):
 class UserDetailAPI(GenericAPIView):
 
     permission_classes = (UserPermission,)
+    serializer_class = UserSerializer
 
 # No permitimos hacer get si no está autenticado
     def get(self, request, pk):
